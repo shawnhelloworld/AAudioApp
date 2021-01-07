@@ -1,26 +1,31 @@
 package com.example.aaudioapp
 
 import android.media.MediaPlayer
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
 import android.view.View
-import android.widget.Button
-import android.widget.TextView
+import android.widget.ImageButton
+import androidx.appcompat.app.AppCompatActivity
+
 
 class MainActivity : AppCompatActivity() {
-    private var mediaPlayer: MediaPlayer? = null
+    private lateinit var mediaPlayer: MediaPlayer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         // Example of a call to a native method
         //findViewById<TextView>(R.id.sample_text).text = stringFromJNI()
         mediaPlayer = MediaPlayer.create(this,R.raw.kalimba)
 
     }
     fun onClick(view:View){
-        mediaPlayer?.start()
+        val  button :ImageButton =  findViewById(R.id.play)
+        if(!mediaPlayer?.isPlaying){
+            mediaPlayer?.start()
+        }
+        else{
+            mediaPlayer.pause()
+        }
+
     }
 
     /**
